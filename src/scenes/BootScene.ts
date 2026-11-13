@@ -26,7 +26,7 @@ export class BootScene extends Phaser.Scene {
     try {
       await Promise.race([
         Promise.all([
-          document.fonts.load(`16px ${FONT}`, 'Birthday İyi ki doğdun'),
+          document.fonts.load(`16px ${FONT}`, 'Doğum Günün Kutlu Olsun Feyza YÜRÜ BOŞLUK ZIPLA'),
           document.fonts.load(`8px ${FONT}`, '0123456789/'),
         ]),
         new Promise((resolve) => setTimeout(resolve, 2500)),

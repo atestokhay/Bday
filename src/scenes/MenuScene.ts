@@ -78,15 +78,15 @@ export class MenuScene extends Phaser.Scene {
       .setDepth(20);
 
     // Title
-    const t1 = pixelText(this, 0, 0, 'Birthday', 32, CSS.cream, CSS.pinkDark).setOrigin(0.5);
-    const t2 = pixelText(this, 0, 38, 'Adventure', 24, CSS.pink, CSS.outline).setOrigin(0.5);
-    const sparkL = this.add.image(-150, 2, TEX.sparkle);
-    const sparkR = this.add.image(146, 36, TEX.twinkle);
+    const t1 = pixelText(this, 0, 0, 'Doğum Günü', 32, CSS.cream, CSS.pinkDark).setOrigin(0.5);
+    const t2 = pixelText(this, 0, 38, 'Macerası', 24, CSS.pink, CSS.outline).setOrigin(0.5);
+    const sparkL = this.add.image(-178, 2, TEX.sparkle);
+    const sparkR = this.add.image(116, 36, TEX.twinkle);
     this.title = this.add.container(0, 0, [t1, t2, sparkL, sparkR]).setDepth(30);
     this.tweens.add({ targets: this.title, y: '+=3', duration: 1600, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' });
     this.tweens.add({ targets: [sparkL, sparkR], alpha: 0.2, duration: 700, yoyo: true, repeat: -1 });
 
-    this.playBtn = pillButton(this, 0, 0, 'PLAY', () => this.startGame()).setDepth(30);
+    this.playBtn = pillButton(this, 0, 0, 'OYNA', () => this.startGame()).setDepth(30);
     this.tweens.add({ targets: this.playBtn, scale: 1.06, duration: 700, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' });
 
     fullscreenButton(this);

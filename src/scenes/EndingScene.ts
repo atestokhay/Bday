@@ -40,7 +40,7 @@ export class EndingScene extends Phaser.Scene {
   private layout(): void {
     const { width, height } = this.scale;
     this.stage?.setPosition(Math.round(width / 2), height);
-    this.replay?.setPosition(Math.round(width - 104), height - 26);
+    this.replay?.setPosition(Math.round(width - 116), height - 26);
   }
 
   // ---------------------------------------------------------------- helpers
@@ -284,27 +284,25 @@ export class EndingScene extends Phaser.Scene {
   }
 
   private async showMessage(cakeTop: number): Promise<void> {
-    const line1 = 'Happy Birthday!';
-    const size = 32;
-    const y1 = cakeTop - 84;
+    // line 1: letters drop in one by one, then sway gently
+    const line1 = 'Doğum Günün Kutlu Olsun!';
+    const size = 24;
+    const y1 = cakeTop - 90;
     const startX = -((line1.length - 1) * size) / 2;
-    const letters: Phaser.GameObjects.Text[] = [];
     [...line1].forEach((ch, i) => {
       if (ch === ' ') return;
       const t = pixelText(this, startX + i * size, y1 + 10, ch, size, CSS.cream, CSS.pinkDark)
         .setOrigin(0.5)
         .setAlpha(0);
-      letters.push(t);
       this.stage.add(t);
       this.tweens.add({
         targets: t,
         y: y1,
         alpha: 1,
         duration: 520,
-        delay: i * 75,
+        delay: i * 60,
         ease: 'Back.easeOut',
         onComplete: () => {
-          // then a slow, gentle wave
           this.tweens.add({
             targets: t,
             y: y1 - 2,
@@ -317,43 +315,40 @@ export class EndingScene extends Phaser.Scene {
         },
       });
     });
-    await this.wait(line1.length * 75 + 450);
+    await this.wait(line1.length * 60 + 500);
     if (!this.alive) return;
 
-    const y2 = cakeTop - 38;
-    // Press Start 2P squeezes "İ" into its 8px cell so it reads like a small "i";
-    // draw a full-height "I" and add the dot as a pixel block above it instead.
-    const line2 = pixelText(this, -10, y2 + 8, 'Iyi ki doğdun!', 16, CSS.gold, CSS.outline)
-      .setOrigin(0.5)
-      .setAlpha(0);
-    const firstCell = line2.x - line2.width / 2;
-    const dotShadow = this.add.rectangle(firstCell + 6 + 2, y2 + 8 - 13 + 2, 4, 4, COLORS.outline).setAlpha(0);
-    const dot = this.add.rectangle(firstCell + 6, y2 + 8 - 13, 4, 4, COLORS.gold).setAlpha(0);
-    const heart = this.add
-      .image(line2.x + line2.width / 2 + 14, y2 + 8, TEX.heartPink)
-      .setAlpha(0);
-    this.stage.add([line2, dotShadow, dot, heart]);
-    await this.tween({
-      targets: [line2, dotShadow, dot, heart],
-      y: '-=8',
-      alpha: 1,
-      duration: 900,
-      ease: 'Sine.easeOut',
-    });
+    // line 2: her name pops in, framed by two beating hearts
+    const y2 = cakeTop - 46;
+    const name = pixelText(this, 0, y2, 'Feyza!', 32, CSS.gold, CSS.outline).setOrigin(0.5).setScale(0);
+    const gap = name.width / 2 + 30;
+    const hearts = [-1, 1].map((side) =>
+      this.add.image(side * gap, y2 - 2, TEX.heartPink).setScale(0),
+    );
+    const ring = this.add.image(0, y2, 'fx_pink_ring').setScale(0.8).setAlpha(0);
+    this.stage.add([ring, name, ...hearts]);
+    this.tweens.add({ targets: ring, scale: 2.2, alpha: { from: 0.9, to: 0 }, duration: 900, ease: 'Quad.easeOut' });
+    await this.tween({ targets: name, scale: 1, duration: 650, ease: 'Back.easeOut' });
     if (!this.alive) return;
-    this.tweens.add({
-      targets: heart,
-      scale: 1.25,
-      duration: 260,
-      yoyo: true,
-      repeat: -1,
-      repeatDelay: 900,
-      ease: 'Quad.easeOut',
+    hearts.forEach((h, i) => {
+      this.tweens.add({ targets: h, scale: S, duration: 380, delay: i * 140, ease: 'Back.easeOut' });
+      this.tweens.add({
+        targets: h,
+        scale: S * 1.25,
+        duration: 260,
+        delay: 900 + i * 300,
+        yoyo: true,
+        repeat: -1,
+        repeatDelay: 900,
+        ease: 'Quad.easeOut',
+      });
     });
+    this.tweens.add({ targets: name, y: y2 - 3, duration: 1100, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' });
+    await this.wait(500);
   }
 
   private showReplay(): void {
-    const btn = pillButton(this, 0, 0, 'PLAY AGAIN', () => this.restart(), { width: 184, height: 32, size: 16 });
+    const btn = pillButton(this, 0, 0, 'TEKRAR OYNA', () => this.restart(), { width: 208, height: 32, size: 16 });
     btn.setAlpha(0);
     this.replay = btn;
     this.layout();

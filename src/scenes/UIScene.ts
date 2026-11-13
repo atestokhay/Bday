@@ -28,7 +28,7 @@ export class UIScene extends Phaser.Scene {
     fullscreenButton(this);
 
     if (!this.touchControls.visible) {
-      this.hint = pixelText(this, this.scale.width / 2, this.scale.height - 20, 'ARROWS / A D  MOVE     SPACE  JUMP', 8)
+      this.hint = pixelText(this, this.scale.width / 2, this.scale.height - 20, 'OKLAR / A D  YÜRÜ     BOŞLUK  ZIPLA', 8)
         .setOrigin(0.5)
         .setAlpha(0);
       this.tweens.chain({

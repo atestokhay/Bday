@@ -35,7 +35,7 @@ export function setupOrientationGate(game: Phaser.Game): void {
     if (phase !== 'welcome') return;
     phase = 'leaving';
     el.classList.add('ready');
-    setTexts("Let's go!", '');
+    setTexts('Haydi başlayalım!', '');
     window.setTimeout(() => el.classList.add('fade'), 1300);
     window.setTimeout(() => {
       el.hidden = true;
@@ -47,7 +47,7 @@ export function setupOrientationGate(game: Phaser.Game): void {
   const showReminder = () => {
     phase = 'reminder';
     el.classList.add('reminder');
-    setTexts('Turn your phone', 'sideways to keep playing');
+    setTexts('Telefonunu yan çevir', 'oyuna devam etmek için');
     el.hidden = false;
     game.pause();
   };
@@ -80,7 +80,7 @@ export function setupOrientationGate(game: Phaser.Game): void {
 
   // Reveal once the pixel font is ready so the text doesn't pop in a fallback font.
   const reveal = () => el.classList.add('visible');
-  Promise.race([document.fonts.load(`16px ${FONT}`, 'Welcome'), new Promise((r) => setTimeout(r, 1200))]).then(
+  Promise.race([document.fonts.load(`16px ${FONT}`, 'Hoş geldin çevir'), new Promise((r) => setTimeout(r, 1200))]).then(
     reveal,
     reveal,
   );
@@ -94,10 +94,10 @@ function buildOverlay(): HTMLElement {
   const el = document.createElement('div');
   el.className = 'gate welcome';
   el.setAttribute('role', 'dialog');
-  el.setAttribute('aria-label', 'Welcome. Turn your phone sideways to play.');
+  el.setAttribute('aria-label', 'Hoş geldin! Oynamak için telefonunu yan çevir.');
   el.innerHTML = `
     <div class="gate-card">
-      <h1 class="gate-title">Welcome!</h1>
+      <h1 class="gate-title">Hoş geldin!</h1>
       <div class="gate-stage">
         <span class="gate-spark s1"></span><span class="gate-spark s2"></span><span class="gate-spark s3"></span>
         <div class="gate-girl">
@@ -106,9 +106,9 @@ function buildOverlay(): HTMLElement {
         </div>
         <div class="gate-phone"></div>
       </div>
-      <p class="gate-text">Turn your phone sideways</p>
-      <p class="gate-sub">to start the adventure</p>
-      <button class="gate-skip" type="button">continue anyway</button>
+      <p class="gate-text">Telefonunu yan çevir</p>
+      <p class="gate-sub">maceraya başlamak için</p>
+      <button class="gate-skip" type="button">yine de devam et</button>
     </div>`;
   // Absolute URLs: a relative url() inside a CSS variable would be resolved against
   // the stylesheet's folder (dist/assets/) instead of the page.
