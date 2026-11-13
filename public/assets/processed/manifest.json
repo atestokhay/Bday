@@ -1,0 +1,296 @@
+{
+  "girl": {
+    "frameWidth": 42,
+    "frameHeight": 66,
+    "idle": [
+      0,
+      3
+    ],
+    "walk": [
+      4,
+      9
+    ],
+    "jumpUp": 10,
+    "jumpDown": 11
+  },
+  "fireSpirit": {
+    "frameWidth": 32,
+    "frameHeight": 44,
+    "idle": [
+      0,
+      3
+    ],
+    "flame": [
+      4,
+      7
+    ]
+  },
+  "cake": {
+    "width": 104,
+    "height": 118,
+    "wick": {
+      "x": 52,
+      "y": 0
+    }
+  },
+  "pipe": {
+    "width": 121,
+    "height": 133,
+    "mouth": {
+      "x": 73.09272727272727,
+      "y": 37.230909090909094,
+      "w": 39,
+      "h": 26
+    },
+    "groundY": 90
+  },
+  "heart": {
+    "width": 16,
+    "height": 15
+  },
+  "tiles": {
+    "bridge": [
+      114,
+      29,
+      6,
+      2,
+      112
+    ],
+    "island_med": [
+      33,
+      23,
+      5,
+      3,
+      30
+    ],
+    "island_small": [
+      22,
+      21,
+      2,
+      0,
+      22
+    ],
+    "island_tiny": [
+      18,
+      16,
+      2,
+      2,
+      17
+    ],
+    "rock_tilt": [
+      44,
+      35,
+      7,
+      1,
+      43
+    ],
+    "rock_long": [
+      68,
+      42,
+      11,
+      1,
+      68
+    ],
+    "rock_low": [
+      51,
+      27,
+      4,
+      1,
+      51
+    ],
+    "rock_vines": [
+      33,
+      36,
+      4,
+      0,
+      33
+    ],
+    "tree_big": [
+      65,
+      70,
+      7,
+      9,
+      54
+    ],
+    "trunk_tall": [
+      24,
+      39,
+      10,
+      3,
+      19
+    ],
+    "stump_roots": [
+      37,
+      35,
+      21,
+      5,
+      30
+    ],
+    "trunk_broken": [
+      13,
+      23,
+      0,
+      0,
+      12
+    ],
+    "vines_a": [
+      12,
+      26,
+      0,
+      0,
+      12
+    ],
+    "vines_b": [
+      26,
+      22,
+      5,
+      4,
+      21
+    ],
+    "tree_pink": [
+      44,
+      36,
+      5,
+      9,
+      38
+    ],
+    "tree_round": [
+      42,
+      36,
+      6,
+      8,
+      36
+    ],
+    "bush_fruit": [
+      27,
+      20,
+      5,
+      4,
+      24
+    ],
+    "fol_left": [
+      48,
+      18,
+      11,
+      0,
+      43
+    ],
+    "fol_right": [
+      48,
+      21,
+      5,
+      15,
+      48
+    ],
+    "mush_red": [
+      9,
+      9
+    ],
+    "mush_orange": [
+      7,
+      9
+    ],
+    "mush_pair": [
+      10,
+      7
+    ],
+    "plant_a": [
+      11,
+      9
+    ],
+    "plant_b": [
+      11,
+      9
+    ],
+    "rocks": [
+      13,
+      9
+    ],
+    "flower_bush": [
+      14,
+      9
+    ],
+    "slab": [
+      19,
+      8
+    ],
+    "bush_small": [
+      18,
+      13
+    ],
+    "sprout": [
+      8,
+      7
+    ],
+    "lavender": [
+      10,
+      7
+    ],
+    "pink_flowers": [
+      14,
+      10
+    ],
+    "stump_small": [
+      20,
+      8
+    ],
+    "log": [
+      24,
+      12
+    ]
+  },
+  "ground": {
+    "topHeight": 36,
+    "tileWidth": 80,
+    "fillHeight": 48,
+    "capWidth": 7,
+    "surfaceOffset": 2
+  },
+  "fx": {
+    "fx_gold_burst": [
+      48,
+      48
+    ],
+    "fx_sparks": [
+      45,
+      46
+    ],
+    "fx_lav_stars": [
+      45,
+      47
+    ],
+    "fx_pink_stars": [
+      49,
+      49
+    ],
+    "fx_pink_ring": [
+      52,
+      51
+    ],
+    "fx_gold_ring": [
+      51,
+      51
+    ],
+    "fx_pink_rays": [
+      50,
+      53
+    ],
+    "fx_warm_dots": [
+      48,
+      48
+    ],
+    "fx_confetti": [
+      54,
+      51
+    ]
+  },
+  "star": {
+    "width": 15,
+    "height": 15
+  },
+  "flame": {
+    "frameWidth": 5,
+    "frameHeight": 8,
+    "frames": 3
+  }
+}
