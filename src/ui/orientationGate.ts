@@ -110,11 +110,14 @@ function buildOverlay(): HTMLElement {
       <p class="gate-sub">to start the adventure</p>
       <button class="gate-skip" type="button">continue anyway</button>
     </div>`;
+  // Absolute URLs: a relative url() inside a CSS variable would be resolved against
+  // the stylesheet's folder (dist/assets/) instead of the page.
+  const asset = (file: string) => `url("${new URL(`${BASE}assets/processed/${file}`, document.baseURI).href}")`;
   const s = el.style;
   s.setProperty('--px', `${PX}px`);
-  s.setProperty('--girl-url', `url("${BASE}assets/processed/girl.png")`);
-  s.setProperty('--phone-url', `url("${BASE}assets/processed/ui/phone.png")`);
-  s.setProperty('--spark-url', `url("${BASE}assets/processed/px_sparkle.png")`);
+  s.setProperty('--girl-url', asset('girl.png'));
+  s.setProperty('--phone-url', asset('ui/phone.png'));
+  s.setProperty('--spark-url', asset('px_sparkle.png'));
   s.setProperty('--fw', `${g.frameWidth * PX}px`);
   s.setProperty('--fh', `${g.frameHeight * PX}px`);
   s.setProperty('--sheet-w', `${g.frameWidth * 12 * PX}px`);
