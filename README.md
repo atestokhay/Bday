@@ -20,6 +20,9 @@ Production build: `npm run build` (output in `dist/`), preview it with `npm run 
 | Jump | Space, ↑ or W (hold for a higher jump) | bottom-right button |
 | Fullscreen | button in the top-right corner | same |
 
+On phones a short welcome screen asks you to turn the phone sideways before the
+menu appears; turning it upright later pauses the game with the same reminder.
+
 ## Project layout
 
 ```

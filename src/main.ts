@@ -7,6 +7,7 @@ import { MenuScene } from './scenes/MenuScene';
 import { GameScene } from './scenes/GameScene';
 import { UIScene } from './scenes/UIScene';
 import { EndingScene } from './scenes/EndingScene';
+import { setupOrientationGate } from './ui/orientationGate';
 
 // Block browser gestures that would scroll, zoom or select during play.
 const prevent = (e: Event) => e.preventDefault();
@@ -39,6 +40,8 @@ const game = new Phaser.Game({
   },
   scene: [BootScene, MenuScene, GameScene, UIScene, EndingScene],
 });
+
+setupOrientationGate(game);
 
 // Handy for manual testing from the console; harmless in production.
 (window as unknown as { __game: Phaser.Game }).__game = game;

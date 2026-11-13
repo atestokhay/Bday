@@ -938,6 +938,49 @@ def main():
     write_manifest()
 
 
+def build_phone():
+    """Little pixel phone used by the 'turn your phone sideways' welcome screen."""
+    W, H = 30, 50
+    c = canvas(W, H)
+    # rounded body
+    rect(c, 1, 0, W - 2, H, LAV)
+    rect(c, 0, 1, W, H - 2, LAV)
+    rect(c, W - 3, 2, 2, H - 4, LAV_D)  # right-side shade
+    rect(c, 2, 1, W - 6, 1, (204, 190, 232))  # top highlight
+    # screen: a tiny landscape version of the game world, drawn rotated so it
+    # only looks right once the phone is turned sideways (CSS turns it -90deg)
+    sx, sy, sw, sh = 3, 6, W - 6, H - 13
+    lw, lh = sh, sw  # landscape scene size
+    scene = np.zeros((lh, lw, 4), np.uint8)
+    sky = [(150, 172, 214), (192, 192, 228), (234, 208, 220)]
+    for y in range(lh):
+        scene[y, :] = (*sky[min(y * len(sky) // lh, len(sky) - 1)], 255)
+    for x in range(lw):
+        h = int(4 + 2.5 * math.sin(x / 3.4))
+        scene[lh - 6 - h: lh - 6, x] = (148, 170, 150, 255)
+    scene[lh - 6: lh - 4, :] = (156, 190, 110, 255)
+    scene[lh - 4:, :] = (176, 120, 86, 255)
+    # tiny girl (hair, face, coat, boots)
+    gx, gy = 8, lh - 12
+    scene[gy: gy + 2, gx: gx + 3] = (40, 44, 120, 255)
+    scene[gy + 2, gx: gx + 3] = (246, 200, 170, 255)
+    scene[gy + 3: gy + 5, gx: gx + 3] = (238, 232, 200, 255)
+    scene[gy + 5, gx] = scene[gy + 5, gx + 2] = (128, 92, 120, 255)
+    # star + heart to collect
+    for dx, dy in ((0, -1), (-1, 0), (0, 0), (1, 0), (0, 1)):
+        scene[6 + dy, 22 + dx] = (255, 208, 92, 255)
+    scene[lh - 11, 30] = scene[lh - 11, 32] = (60, 90, 230, 255)
+    scene[lh - 10, 30:33] = (60, 90, 230, 255)
+    scene[lh - 9, 31] = (60, 90, 230, 255)
+    c[sy: sy + sh, sx: sx + sw] = np.rot90(scene, k=-1)
+    # speaker slot + home button
+    rect(c, W // 2 - 3, 3, 6, 1, LAV_D)
+    rect(c, W // 2 - 2, H - 5, 4, 3, (204, 190, 232))
+    rect(c, W // 2 - 1, H - 4, 2, 1, LAV_D)
+    c = outline(np.pad(c, ((1, 1), (1, 1), (0, 0))))
+    emit("ui/phone.png", c, 6)
+
+
 def build_generated():
     print("generated art")
     build_star()
@@ -949,6 +992,7 @@ def build_generated():
     build_lantern_flower()
     build_backgrounds()
     build_ui()
+    build_phone()
 
 
 def write_manifest():
